@@ -1,0 +1,13 @@
+*__pycache__*
+*.pyc
+*.pth
+models/weights/*
+.vscode/*
+beam_results/*
+
+# only add when necessary
+*.ipynb
+data/*
+generated_patches/*
+logs/*
+all_tests
