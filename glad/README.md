@@ -30,6 +30,7 @@ mkdir -p /home/java-pred-synth/data/finetune
 ```
 
 ## Execution
+### Run with our settings
 With setup done, first get the buggy defects4j project with:
 ```bash
 sh defects4j-loader.sh [PROJ] [BUG_ID]
@@ -50,6 +51,19 @@ docker run --rm --gpus all --name glad-eval [IMAGE_NAME] \
                                  --beam_width 10000 --search_len 12 \
                                  --model_path [MODEL_PATH]"
 ```
+
+### Flags for `repair.py`
+
+ * `--project`, `--bug_id`: Specifies which bug to run GLAD on.
+ * `--beam_width`: The number of candidates to generate (W from Alg. 1)
+ * `--search_len`: The maximum number of subtokens to use (l from Alg. 1)
+ * `--stop_on_pass`: Whether to stop on the first plausible patch. Default 1.
+ * `--model_path`: Path to pretrained language model.
+
+For the ablation studies, different code regions were commented out:
+ * For -Finetuning, the finetuning part in `repair.py` (L39-43) were commented out.
+ * For -Grammar, the grammar filtering part of `beam_search.py` (L126-133) is commented out, and L141 is changed to `tok_legal = True`.
+ * For -LM, the sorting in `beam_search.py` (L151) is changed to random.
 
 A log will print, showing the repair process.
 
