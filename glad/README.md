@@ -44,7 +44,7 @@ python repair.py --project [PROJ] --bug_id [BUG_ID] \
 
 Or with docker:
 ```bash
-docker run --rm --gpus all --name glad-eval minus21/glad \
+docker run --rm --gpus all --name glad-eval [IMAGE_NAME] \
     bash -c "sh defects4j-loader.sh [PROJ] [BUG_ID] && \
              python3.9 repair.py --project [PROJ] --bug_id [BUG_ID] \
                                  --beam_width 10000 --search_len 12 \
